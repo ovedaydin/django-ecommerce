@@ -1,0 +1,95 @@
+{% extends  'checkout/checkout-main.html' %}
+{% load static %}
+{% block content %}
+       <form method="POST" action="">
+           <h2 class="header-2 hidden">West Cakery</h2>
+           {% csrf_token %}
+<link rel="stylesheet" type= "text/css" href="{% static '/css/checkout_main_design_info.css' %}">
+<div class="label-wrapper">
+                <label for="contact-info">İletişim Bilgileri</label><br>
+            </div>
+
+            <input type="text" id="contact-info" name="contact-info" placeholder="E-posta veya cep telefonu numarası" required value="{{order.contact}}"><br>
+            <div class="radio-wrapper">
+                <input type="checkbox" id="subscribe" name="subscribe" value="subscribe">Beni haberlerden ve özel tekliflerden haberdar et<br>
+            </div>
+
+            <div class="label-wrapper">
+                <label for="shipping">Gönderim yöntemi</label><br>
+            </div>
+
+            <div class="radioWPhoto1">
+                <input type="radio" id="ship" name="ship" value="shipping">Gönder<br>
+            </div>
+
+            <div class="radioWPhoto2">
+                <input type="radio" id="takeaway" name="ship" checked="checked" value="takeaway">Gel-al<br>
+            </div>
+
+            <div id="takeaway-container" class="">
+                <div class="label-wrapper">
+                    <label for="takeaway-option">Gel-al</label><br>
+                </div>
+
+                <div class="radioTakeAway">
+                    <input type="radio" id="ship" name="address" checked="checked">Hasanpaşa Ücretsiz<br>
+                </div>
+            </div>
+
+            <div id="shipping-info" class="hidden">
+                <div class="label-wrapper">
+                    <label>Kargo adresi</label><br>
+                </div>
+                <input type="text" id ="name" name="name" placeholder="Ad" value="{{address.name}}"><br>
+                <input type="text" id ="surname" name="surname" placeholder="Soyadı" value="{{address.surname}}"><br>
+                <input type="text" id ="company" name="company"placeholder="Şirket(isteğe bağlı)" value="{{address.company}}"><br>
+                <input type="text" id ="address1" name="address1" placeholder="Adres" value="{{address.address1}}"><br>
+                <input type="text" id ="address2" name="address2" placeholder="Apartman, daire vb." value="{{address.address2}}"><br>
+                <input type="text" id ="postcode" name="postcode" placeholder="Posta kodu" value="{{address.postcode}}"><br>
+                <select type="text" id ="district" name="district" placeholder="Semt">
+                  <option value="Kadıköy" id="Kadıköy">Kadıköy</option>
+                  <option value="Üsküdar" id="Üsküdar">Üsküdar</option>
+                </select><br>
+                <select type="text" id ="city" name="city" select="{{address.city}}">
+                  <option value="İstanbul">İstanbul</option>
+                </select><br>
+                <input type="text" id ="phone" name="phone" placeholder="Telefon" value="{{address.phone}}"><br>
+                <div class="radio-wrapper">
+                    <input type="checkbox" id="saveShipping" name="saveShipping" value="True">Bir sonraki işlem için bu bilgileri kaydet<br>
+                </div>
+            </div>
+            <div id="select_district" class="hidden">{{address.district}}</div>
+
+<script type="text/javascript">
+            ship = document.getElementById("ship")
+            takeaway = document.getElementById("takeaway")
+
+    takeaway.addEventListener("click",function(){
+        document.getElementById("takeaway-container").classList.remove("hidden");
+        document.getElementById("shipping-info").classList.add("hidden");
+        document.getElementById("name").required = false;
+        document.getElementById("surname").required = false;
+        document.getElementById("address1").required = false;
+
+        document.getElementById("city").required = false;
+        document.getElementById("district").required = false;
+        document.getElementById("phone").required = false;
+    })
+
+    ship.addEventListener("click",function(){
+        document.getElementById("shipping-info").classList.remove("hidden");
+        document.getElementById("takeaway-container").classList.add("hidden");
+        document.getElementById("name").required = true;
+        document.getElementById("surname").required = true;
+        document.getElementById("address1").required = true;
+
+        document.getElementById("city").required = true;
+        document.getElementById("district").required = true;
+        document.getElementById("phone").required = true;
+
+    })
+    var select_district = document.getElementById("select_district").innerText;
+    document.getElementById(String(select_district)).selected = true;
+
+</script>
+{% endblock content %}

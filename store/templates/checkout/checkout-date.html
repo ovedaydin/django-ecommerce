@@ -1,0 +1,101 @@
+{% extends  'checkout/checkout-main.html' %}
+{% load static %}
+{% block content %}
+
+           <h2 class="header-2 hidden">West Cakery</h2>
+
+<link rel="stylesheet" type= "text/css" href="{% static '/css/checkout_shipping_design.css' %}">
+
+<div class="box-wrapper">
+                    <div class="box">
+                        <div class="box-in">
+                            <div class="box-label">İletişim</div>
+                            <div>{{contact}}</div>
+                        </div>
+                        <a href="#">Değiştir</a>
+                    </div>
+                    <hr>
+                    <div class="box">
+                        <div class="box-in">
+                            <div class="box-label">Adres:</div>
+                            <div>{{address}}</div>
+                        </div>
+                        <a href="#">Değiştir</a>
+                    </div>
+                </div>
+                <div class="date-wrapper">
+                    <div id="v-cal">
+                        <div class="vcal-header">
+                            <button class="vcal-btn" data-calendar-toggle="previous">
+                                <svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z"></path>
+                                </svg>
+                            </button>
+
+                            <div class="vcal-header__label" data-calendar-label="month">
+                                March 2017
+                            </div>
+
+
+                            <button class="vcal-btn" data-calendar-toggle="next">
+                                <svg height="24" version="1.1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="vcal-week">
+                            <span>Paz</span>
+                            <span>Salı</span>
+                            <span>Çar</span>
+                            <span>Per</span>
+                            <span>Cum</span>
+                            <span>Crts</span>
+                            <span>Paz</span>
+                        </div>
+                        <div class="vcal-body" data-calendar-area="month"></div>
+                    </div>
+                    <p><span></span>
+                       <span id="picked">   Bir tarih seçin</span>
+                   </p>
+                    <div class="special-day hidden">{{ shipping.shippingCostDiscount|floatformat:2 }}</div>
+                    <div class="shipping-cost hidden">{{ shipping.shippingCost|floatformat:2 }}</div>
+                    <div class="order-total-w/o/shipping hidden">{{ shipping.withShippingDiscount|floatformat:2 }} TL</div>
+                    <div class="order-total-w/shipping hidden">{{ shipping.withShipping|floatformat:2 }} TL</div>
+
+                </div>
+                <form method="POST" action="">
+                       {% csrf_token %}
+                       <p class="demo-picked hidden">
+                    Date picked:
+                    <span data-calendar-label="picked"></span>
+                </p>
+
+                <input id="date" type="date" class="hidden" name="date" required>
+                <input id="shipping_cost" type="text" class="hidden" name="shipping_cost">
+
+                <script src="{% static '/js/vanillaCalendar.js' %}" type="text/javascript"></script>
+                <script>
+                    window.addEventListener('load', function () {
+                        var discount = document.getElementsByClassName("special-day")[0].innerText
+                        var shippingCost = document.getElementsByClassName("shipping-cost")[0].innerText
+                        var withoutShipping = document.getElementsByClassName("order-total-w/o/shipping")[0].innerText
+                        var withShipping = document.getElementsByClassName("order-total-w/shipping")[0].innerText
+                        var biggestAmounts = document.getElementsByClassName("biggest-amount")
+                        var shippingFees = document.getElementsByClassName("sum-fourth")
+                        var prices = document.getElementsByClassName("price")
+
+                        vanillaCalendar.init({
+                            disablePastDays: true,
+                            discount: discount,
+                            shippingCost: shippingCost,
+                            withShipping: withShipping,
+                            withoutShipping: withoutShipping,
+                            shippingFees: shippingFees,
+                            biggestAmounts: biggestAmounts,
+                            prices: prices,
+                        });
+                    })
+
+
+                </script>
+{% endblock content %}

@@ -1,0 +1,126 @@
+@media (min-width: 750px) {
+  main .product_wrapper {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+  main .product_wrapper .product_action_wrapper {
+    padding-top: 25%;
+  }
+}
+
+main .product_wrapper img {
+  padding-top: 10px;
+  width: 92%;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+main .product_wrapper h1 {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 100;
+  text-align: center;
+  font-size: 28px;
+  color: #333333;
+}
+
+main .product_wrapper .product_price {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 100;
+}
+
+main .product_wrapper .addToCart {
+  padding-bottom: 15px;
+  padding-top: 15px;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+main .product_wrapper .addToCart button {
+  border: none;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  border: 2px solid #3d3d3d;
+  height: 40px;
+}
+
+main .product_wrapper .buyNow {
+  padding-bottom: 15px;
+  padding-left: 4%;
+  padding-right: 4%;
+}
+
+main .product_wrapper .buyNow button {
+  border: none;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #3d3d3d;
+  text-decoration: none;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  border: 2px solid #3d3d3d;
+  height: 40px;
+}
+
+main .product_wrapper form {
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 10% 1fr;
+      grid-template-columns: 10% 1fr;
+  grid-gap: 0.5em;
+  width: 90%;
+  padding: 0;
+  margin: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+main .product_wrapper form label {
+  font-size: 23px;
+}
+
+main .product_wrapper .bundleVariant {
+  display: block;
+}
+
+main .product_wrapper .bundleVariant .opt {
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 10% 1fr;
+      grid-template-columns: 10% 1fr;
+  grid-gap: 0.5em;
+  width: 90%;
+  padding: 0;
+  margin: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+main .product_wrapper .bundleVariant .opt label {
+  font-size: 23px;
+}
+
+main .product_info {
+  padding: 15px;
+  padding-left: 4%;
+  padding-right: 4%;
+  width: 90%;
+}
+
+@media (min-width: 750px) {
+  main .product_info {
+    padding-top: 5%;
+  }
+}
+/*# sourceMappingURL=product.css.map */

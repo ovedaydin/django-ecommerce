@@ -1,0 +1,23 @@
+{% extends  'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <link rel="stylesheet" type= "text/css" href="{% static '/css/product.css' %}">
+    <div class="col-lg-6 col-md-6 ">
+        <img class = "img img-fluid" style="overflow:hidden" src="{{product.imageURL}}" alt="Responsive image">
+        <div class="product">
+        </div>
+    </div>
+    <div class="col-lg-6  col-md-6 column">
+        <h1><strong>{{product.name}}</strong></h1>
+        <div class="product">
+            <h5 style= "display: inline-block;">${{product.price|floatformat:2}}</h5>
+            <br>
+            <button data-product={{product.id}} data-action ="add" class = "btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+        </div>
+        <hr>
+        <h6><strong>{{product.name}} desciption</strong></h6>
+    </div>
+</div>
+
+{% endblock content %}

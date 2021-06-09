@@ -1,0 +1,163 @@
+{% extends  'wholesale/main.html' %}
+{% load static %}
+{% block content %}
+<style media="screen">
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    padding: 20px;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: max-content; /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+</style>
+<div class="row">
+<div class="btn col-md-3">
+</div>
+  <div class="btn col-md-6">
+    <div class="btn box-element list-group">
+      <div class="btn"> Name: {{customer.name}}</div>
+      <div class="btn"> username: {{customer.user}}</div>
+      <span class="btn"> chain: {{customer.chain}} </span>
+      <span class="btn"> Admin: {{customer.chainAdmin}} </span>
+      <span class="btn">email: {{customer.email}} </span>
+      <span class="btn">Phone Number: {{customer.phone_number}} </span>
+      <button id = "edit" class ="btn btn-outline-info" type="button" name="button">edit</button>
+    </div>
+    <br>
+    <div class="btn box-element list-group">
+    <h4>Adress</h4>
+
+    </div>
+</div>
+<div class="btn col-md-3">
+</div>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div>
+
+    <div class="box-element" id ="form-wrapper">
+      <form id="form" class="btn">
+        {% csrf_token %}
+        <div class="form-field">
+          	<input required class="form-control form-control-lg" type="text" name="name" value="{{customer.name}}">
+            <input required class="form-control form-control-lg" type="text" name="username" value="{{customer.user}}">
+            <input readonly class="form-control form-control-lg" type="text" name="chain" value="{{customer.chain}}">
+            <input required class="form-control form-control-lg" type="text" name="email" value="{{customer.email}}">
+            <input required class="form-control form-control-lg" type="text" name="phone_number" value="{{customer.phone_number}}">
+        </div>
+        <hr>
+        <input id="form-button" class = "btn btn-success btn-block"type="submit" name="" value="Güncelle">
+
+      </form>
+
+    </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript">
+    var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("edit");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on the button, open the modal
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  </script>
+
+  <script type="text/javascript">
+    var form = document.getElementById('form')
+    csrftoken = form.getElementsByTagName("input")[0].value
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault()
+      console.log('form submitted')
+      submitFormData()
+      modal.style.display = "none";
+    })
+
+    function submitFormData(){
+      var userFormData = {
+        'name':form.name.value,
+        'username': form.username.value,
+        'email':form.email.value,
+        'phone_number':form.phone_number.value,
+      }
+
+      var url = 'update_user/'
+      fetch(url,{
+        method:'POST',
+        headers: {
+          'Content-Type':'application/json',
+          'X-CSRFToken': csrftoken,
+          },
+          body: JSON.stringify({'form':userFormData})
+
+
+      } )
+      .then( (response)=> response.json())
+      .then((data)=> {
+        console.log('Success',data);
+        alert('Güncellendi')
+
+
+        window.location.href = "{% url 'wholesaleUser' %}"
+      })
+
+    }
+
+  </script>
+{% endblock content %}

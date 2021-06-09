@@ -1,0 +1,23 @@
+{% extends  'store/main-designed.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type= "text/css" href="{% static '/css/store_design.css' %}">
+
+<main>
+  <section id="popular">
+  <h2>{{tag}}</h2>
+  <ul> {% for product in products %}
+      <li>
+          <span></span>
+          <a href="{% url 'products' product.id %}"><img src="{{product.imageURL}}"  alt="logo"></a>
+          <div class="title">{{product.name}}</div>
+          <div class="price">{{product.price}}</div>
+      </li>
+      {% endfor %}
+  </ul>
+</section>
+</main>
+
+
+
+{% endblock content %}

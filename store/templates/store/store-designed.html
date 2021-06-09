@@ -1,0 +1,40 @@
+{% extends  'store/main-designed.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type= "text/css" href="{% static '/css/store_design.css' %}">
+
+<main>
+  <section id="popular">
+  <h2>Popüler</h2>
+  <ul> {% for popular in populars %}
+      <li>
+          <span></span>
+          <a href="{% url 'products' popular.id %}"><img src="{{popular.imageURL}}"  alt="logo"></a>
+          <div class="title">{{popular.name}}</div>
+          <div class="price">{{popular.price}}</div>
+      </li>
+      {% endfor %}
+  </ul>
+</section>
+
+<section id="popular">
+  <h2>Koleksiyonlar</h2>
+  <ul>
+      {% for collection in collectionProducts %}
+      <li class="container">
+          <span></span>
+          <a href="{% url 'tag' collection.tags %}" id="wrapper">
+              <div id="image_div">
+               <img src="{{collection.imageURL}}">
+               <p  id="image_label"><span>{{collection.tags}}</span></p>
+              </div>
+          </a>
+      </li>
+      {% endfor %}
+  </ul>
+</section>
+      </main>
+
+
+
+{% endblock content %}

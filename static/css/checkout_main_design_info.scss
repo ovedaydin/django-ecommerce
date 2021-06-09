@@ -1,0 +1,72 @@
+$colors: (
+  primary: #005dff,
+  primary-light: lighten(#005dff, 40%),
+  primary-dark: darken(#005dff, 40%),
+  accent: darken(#787878, 30%),
+);
+
+$padding: 15px;
+$desktop: 1000px;
+$protablet: 750px;
+$tablet: 560px;
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+@mixin protablet {
+  @media (min-width: #{$protablet}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+body{
+
+    form{
+        .radio-wrapper {
+            color: #545454;
+            padding: 10px;
+            padding-left: 0;
+      
+            input {
+              margin-right: 15px;
+            }
+            font-size: 15px;
+          }
+          .radioWPhoto1 {
+            border: 1px solid #d9d9d9;
+            border-radius: 4px 4px 0 0;
+            padding: 10px;
+            color: #545454;
+            height: 52px;
+            width: 95%;
+          }
+          .radioWPhoto2 {
+            border: 1px solid #d9d9d9;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            padding: 10px;
+            color: #545454;
+            height: 51px;
+            width: 95%;
+          }
+          .radioTakeAway {
+            border: 1px solid #d9d9d9;
+            border-radius: 4px 4px 4px 4px;
+            padding: 10px;
+            color: #545454;
+          }
+
+    }
+}

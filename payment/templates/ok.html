@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {{ success }} </title>
+</head>
+<body>
+    <style media="screen">
+    .hidden {
+display: none; }
+    </style>
+    <div id='success'>
+        {{result}}
+    </div>
+    <a class='hidden' id='type'>
+    </a>
+
+<script type="text/javascript">
+let success = document.getElementById('success').innerHTML.toString()
+let type = document.getElementById('type').innerHTML.toString()
+console.log(success)
+console.log(type)
+if (success = "success") {
+    alert("Ödeme Başarılı");
+    window.location.href="{% url 'store' %}";
+}else if(success = "fail"){
+    alert("Ödeme Başarısız");
+    window.location.href="{% url 'checkoutPayment' %}";
+
+}else{
+    alert("Ödeme Başarısız");
+}
+
+</script>
+</body>
+</html>

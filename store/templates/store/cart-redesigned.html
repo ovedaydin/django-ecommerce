@@ -1,0 +1,87 @@
+{% extends  'store/main-designed.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type= "text/css" href="{% static '/css/cart.css' %}">
+<main>
+        {% if order.get_cart_items != 0 and order %}
+
+          <section id="mobile-cart">
+            <ul>
+                    {% for item in items %}
+              <li class="container">
+                <a href="#" class="cart-product-wrapper">
+                  <div>
+                    <img src="{{item.product.imageURL}}" />
+                  </div>
+                </a>
+                <div class="cart-product-info">
+                  <div></div>
+                  <a href="#" class="cart-product-detail">{{item.product.name}}</a>
+                  <p>Fiyat</p>
+                  <div class="cart-product-detail">{{item.product.price|floatformat:2}} TL</div>
+                  <p>Adet</p>
+                  <div class="cart-product-detail">{{item.quantity}}</div>
+                  <p>Toplam</p>
+                  <div class="cart-product-detail">{{item.get_total|floatformat:2}} TL</div>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </section>
+
+          <section id="desktop-cart" class="hidden">
+            <hr>
+            <ul>
+              <li style="text-align: left;">Ürün</li>
+              <li></li>
+              <li>Fiyat</li>
+              <li>Adet</li>
+              <li>Toplam</li>
+            </ul>
+             {% for item in items %}
+            <ul class="cart-product-line">
+              <li class="container">
+                <a href="#" class="cart-product-wrapper">
+                  <div>
+                    <img src="{{item.product.imageURL}}" />
+                  </div>
+                </a>
+              </li>
+              <li class="cart-product-detail"><a href="#">{{item.product.name}}</a></li>
+              <li class="cart-product-detail">{{item.product.price|floatformat:2}} TL TL</li>
+              <li class="cart-product-detail">{{item.quantity}}</li>
+              <li class="cart-product-detail">{{item.get_total|floatformat:2}} TL</li>
+            </ul>
+            {% endfor %}
+          </section>
+
+          <div class="cart-bottom">
+            <div class="order-message">
+              <p>Satıcıya özel talimatlar</p>
+              <textarea name="name" rows="5" cols="50"></textarea>
+            </div>
+
+            <div class="order-summary">
+              <h4>Alt Toplam {{order.get_cart_total_no_shipping|floatformat:2}} TL</h4>
+              <p>Vergi dahildir. Kargo, ödeme sayfasında hesaplanır.</p>
+              <div class="addToCart"><button onclick="window.location.href='/tag/all'">ALIŞVERİŞE DEVAM ET</button></div>
+              <div class="buyNow"><button onclick="window.location.href='/checkout'");">ÖDEME YAP</button></div>
+            </div>
+
+          </div>
+
+        </main>
+        {% else %}
+        <h2>Sepetiniz şu anda boş.</h2>
+        {% endif %}
+
+        <script type="text/javascript">
+                function goToCheckOutPage (){
+                        window.location.replace("{% url 'checkout' %}");
+                }
+
+        </script>
+
+
+
+{% endblock content %}
