@@ -1,0 +1,187 @@
+{% extends  'store/main-designed.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type= "text/css" href="{% static '/css/product.css' %}">
+<style>
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3d3d3d;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+<main>
+  <div class="product_wrapper">
+      <img src="{{product.imageURL}}" alt="logo">
+      {% if product.is_bundle and product.has_variant %}
+      <div class="product_bundle_variant_wrapper">
+        <h1>{{product.name}}</h1>
+        <div id = "varient_price" class="product_price">{{product.price|floatformat:2}} TL</div>
+        <form class="bundleVariant" action="index.html" method="post">
+          <div class="opt">
+            <label for=""></label>
+            <select onchange="updatePrice();" id="size" name="cars">
+              {% for key, values in bundle_variant.items %}
+              <option value="{{key.price|floatformat:2}}">{{key.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          {% for key, bundles in bundle_variant.items %}
+          <div class="hidden" id="{{key.price|floatformat:2}}">
+          <div class="opt">
+          {% for index, values in bundles.items %}
+            <label for="">{{index}}</label>
+            <select onchange="updatePrice();" id="size" name="cars">
+              {% for product in values %}
+              <option  value="">{{product}}</option>
+              {% endfor %}
+            </select>
+
+          {% endfor %}
+          </div>
+          </div>
+          {% endfor %}
+
+        </form>
+        <div class="addToCart"><button class = "update-cart" data-product={{product.id}} data-action ="add">SEPETE EKLE</button></div>
+        <div class="hidden loader"></div>
+        <div class="buyNow"><button>HEMEN SATIN AL</button></div>
+        <script type="text/javascript">
+
+          function updatePrice(){
+            var options = document.getElementById("size").options
+            for (i = 0; i < options.length; i++) {
+                document.getElementById(options[i].value).classList.add("hidden");
+                }
+            var price = document.getElementById("size")
+            document.getElementById("varient_price").innerHTML = price.value + ' TL';
+            document.getElementById(price.value).classList.remove("hidden")
+          }
+          updatePrice()
+      </script>
+
+      </div>
+      {% elif product.is_bundle %}
+      <div class="product_bundle_wrapper">
+        <h1>{{product.name}}</h1>
+        <div class="product_price">{{product.price|floatformat:2}} TL</div>
+        <form class="" action="index.html" method="post">
+
+        </form>
+        <div id="limit" class="hidden" >13</div>
+        {% for key, values in bundle.items %}
+        <label for="">{{key}}</label>
+        <div class="">
+          {{values}}  <button class = "update-bundle" data-product={{values.id}} data-action ="add" >+</button><a id="{{values.id}}">0</a>
+          <button class = "update-bundle" data-product={{values.id}} data-action ="remove" >-</button>
+        </div>
+        {% endfor %}
+        <div class="addToCart"><button class = "update-cart" data-product={{product.id}} data-action ="add">SEPETE EKLE</button></div>
+        <div class="hidden loader"></div>
+        <div class="buyNow"><button>HEMEN SATIN AL</button></div>
+        <script type="text/javascript">
+          var updateBundles = document.getElementsByClassName('update-bundle')
+          var limit =  Number(document.getElementById('limit').innerHTML)
+          var limit_counter = 0
+          for(var i = 0; i< updateBundles.length; i++ ){
+            updateBundles[i].addEventListener('click',function(){
+              console.log(limit_counter)
+              var productId = this.dataset.product
+              var action = this.dataset.action
+              updateBundle(productId,action)
+
+            })
+
+          }
+
+          function updateBundle (productId, action){
+            var quantity = document.getElementById(productId)
+            var number = Number(quantity.innerText)
+            if (action == 'add'){
+                if (limit_counter >= limit){
+
+                }else{
+                  limit_counter += 1
+                  number += 1
+                }
+
+            }
+            if (action == 'remove'){
+              if (number <= 0){
+                number = 0
+              }else{
+                number -= 1
+                limit_counter -= 1
+              }
+
+
+              if (limit_counter <= 0){
+                limit_counter = 0
+              }
+            }
+            quantity.innerText = number
+          }
+        </script>
+
+      </div>
+      {% elif product.has_variant%}
+      <div class="product_action_wrapper">
+          <h1>{{product.name}}</h1>
+
+          <form class="" action="index.html" method="post">
+            <label for=""></label>
+            <select onchange="updatePrice();"id="variants" name="cars">
+              {% for variant in variants %}
+              <option  value="{{variant.price|floatformat:2}}">{{variant.name}}</option>
+              {% endfor %}
+            </select>
+          </form>
+          <div id ="varient_price"class="product_price">{{product.price|floatformat:2}} TL</div>
+          <div class="addToCart"><button class = "update-cart" data-product={{product.id}} data-action ="add">SEPETE EKLE</button></div>
+          <div class="hidden loader"></div>
+          <div class="buyNow"><button>HEMEN SATIN AL</button></div>
+          <script type="text/javascript">
+
+            function updatePrice(){
+              var price = document.getElementById("variants")
+              document.getElementById("varient_price").innerHTML = price.value + ' TL';
+            }
+            updatePrice()
+        </script>
+      </div>
+hidden
+      {% else %}
+      <div class="product_action_wrapper">
+          <h1>{{product.name}}</h1>
+          <div class="product_price">{{product.price|floatformat:2}} TL</div>
+          <div class="addToCart"><button class = "update-cart" data-product={{product.id}} data-action ="add">SEPETE EKLE</button></div>
+          <div class="hidden loader"></div>
+          <div class="buyNow"><button>HEMEN SATIN AL</button></div>
+      </div>
+      {% endif %}
+  </div>
+  {% if product.descripton %}
+  <div class="product_info">{{product.descripton}} </div>
+  {% endif %}
+</main>
+
+<script type="text/javascript" src="{% static 'js/cart.js' %}" ></script>
+
+
+{% endblock content %}

@@ -1,0 +1,104 @@
+
+
+$colors: (
+    primary: #005DFF,
+    primary-light: lighten(#005DFF, 40%),
+    primary-dark: darken(#005DFF, 40%),
+    accent: darken(#787878, 30%)
+    );
+
+$padding: 15px;
+$borders: 15px;
+$desktop: 750px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}){
+        @content;
+    }
+}
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+}
+
+main {
+
+    
+
+    section#popular{
+        font-family:    'Times New Roman', Times, serif;
+        margin: auto;
+        padding: $padding;
+        text-decoration: none solid rgb(51, 51, 51);
+        
+        
+
+        h2{
+            font-weight: 100;
+            font-size: 23px;
+            text-align: center;
+            @include desktop{padding-left: $padding;text-align: left;} 
+        }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: auto;
+                display: grid;
+                grid-template-columns: 50% auto;
+                @include desktop{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+            
+                }
+                
+                li{
+                    
+                    a{
+                        img{width: 100%;}
+                        
+                    }
+                   text-align: center;
+                   padding: $padding;
+
+            }
+            .container{
+                #wrapper{
+                    text-align:center;
+                    margin:0 auto;
+                    padding:0px;
+                    #image_div{
+                        position:relative;
+                        img{
+                        width:100%;
+                        filter: brightness(70%);
+                        &:hover {
+                            
+                            filter: brightness(80%);
+                        }
+                        }
+                        #image_label{
+                            text-decoration: none;
+                            color: color(accent);
+                            
+                            margin:0px;
+                            position:absolute;
+                            
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            span{
+                                font-family:    'Times New Roman', Times, serif;
+                                opacity: 0.95;
+                                padding:7px;
+                                color:white;
+                                
+                                font-size: 1.5em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}

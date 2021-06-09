@@ -1,0 +1,146 @@
+
+
+$colors: (
+    primary: #005DFF,
+    primary-light: lighten(#005DFF, 40%),
+    primary-dark: darken(#005DFF, 40%),
+    accent: darken(#787878, 30%)
+    );
+
+$padding: 15px;
+$borders: 15px;
+$desktop: 750px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}){
+        @content;
+    }
+}
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+}
+
+main {
+    .product_wrapper{
+        @include desktop{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            .product_action_wrapper{
+                padding-top: 25%;
+            }
+            
+        } 
+
+        img{
+            padding-top: 10px;
+            width: 92%;
+            padding-left: 4%;
+            padding-right: 4%;
+        }
+        h1{
+            font-family: 'Times New Roman', Times, serif ;
+            font-weight: 100;
+            text-align: center;
+            font-size: 28px;
+            color: #333333;
+        }
+        .product_price{
+            text-align: center;
+            font-size: 28px;
+            font-weight: 100;
+            
+        }
+        .addToCart{
+            padding-bottom: $padding;
+            padding-top: $padding;
+            padding-left: 4%;
+            padding-right: 4%;
+            
+            button{
+                border: none;
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: white;
+                text-decoration: none;
+                width: 100%;
+                text-align: center;
+                display: inline-block;
+                border: 2px solid #3d3d3d;
+                height: 40px;
+            } 
+        }
+    
+        .buyNow{
+            padding-bottom: $padding;
+            padding-left: 4%;
+            padding-right: 4%;
+            button{
+                border: none;
+                color: white;
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #3d3d3d;
+                text-decoration: none;
+                width: 100%;
+                text-align: center;
+                display: inline-block;
+                border: 2px solid #3d3d3d;
+                height: 40px;
+            } 
+        }
+        form{
+            text-align: center;
+            display: grid;
+            grid-template-columns: 10% 1fr;
+            grid-gap: 0.5em;
+            width: 90%;
+            padding: 0;
+            margin: 0;
+            padding-left: 5%;
+            padding-right: 5%;
+            
+            label{
+                font-size: 23px;
+                
+                
+            }
+
+        }
+        .bundleVariant{
+            display: block;
+            .opt{
+                text-align: center;
+                display: grid;
+                grid-template-columns: 10% 1fr;
+                grid-gap: 0.5em;
+                width: 90%;
+                padding: 0;
+                margin: 0;
+                padding-left: 5%;
+                padding-right: 5%;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+                
+                label{
+                    font-size: 23px;
+                    
+                    
+                }
+            }
+        }
+        
+
+    }
+    
+    .product_info{
+        padding: $padding;
+        padding-left: 4%;
+        padding-right: 4%;
+        width: 90%;
+        @include desktop{
+            padding-top: 5%;
+        }
+
+    }
+    
+    
+}

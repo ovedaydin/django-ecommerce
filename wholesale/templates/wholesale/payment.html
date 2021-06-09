@@ -1,0 +1,6 @@
+{% extends 'wholesale/checkout.html' %}
+{% load static %}
+{% block content %}
+    {{ block.super }}
+    {{checkoutFormContent | safe}}
+{% endblock %}

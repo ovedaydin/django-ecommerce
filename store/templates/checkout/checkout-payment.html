@@ -1,0 +1,88 @@
+{% extends  'checkout/checkout-main.html' %}
+{% load static %}
+{% block content %}
+<form method="POST" action="">
+                {% csrf_token %}
+<h2 class="header-2 hidden">West Cakery</h2>
+<link rel="stylesheet" type= "text/css" href="{% static '/css/checkout_payment_design.css' %}">
+<div class="box-wrapper">
+                    <div class="box">
+                        <div class="box-in">
+                            <div class="box-label">İletişim</div>
+                           <div>{{contact}}</div>
+                        </div>
+                        <a href="#">Değiştir</a>
+                    </div>
+                    <hr>
+                    <div class="box">
+                        <div class="box-in">
+                            <div class="box-label">Adres:</div>
+                            <div>{{address}}</div>
+                        </div>
+                        <a href="#">Değiştir</a>
+                    </div>
+                </div>
+                <div class="payment-wrapper">
+                <div class="label-wrapper">
+                    <label>Ödeme</label><br>
+                </div>
+                <div class="radioTop">
+                    <input type="radio"  id="online_payment" name="payment" checked="checked" value="online_payment"> Online Ödeme<br>
+                </div>
+                <div class="radioMid explanation" id="online_payment_explanation">
+                    <p>İyzico ödeme platformuna yönlendireleceksiniz.</p>
+                </div>
+
+                <div class="radioMid">
+                    <input type="radio"  id="bank_transfer" name="payment" value="bank_transfer"> Banka Mevduatı<br>
+                </div>
+                <div class="radioMid explanation hidden" id="bank_transfer_explanation">
+                    <p>Akbank - Hasanpaşa mah. Kadıköy</p>
+                    <p>IBAN (TRL) TR770004600235888000103016</p>
+                    <p>West Cakery Gıda San. Ve Tic. Ltd. Şirketi</p>
+                </div>
+                <div class="radioMid">
+                    <input type="radio" id="cash" name="payment" value="cash"> Kapıda Nakit<br>
+                </div>
+                <div class="radioBottom">
+                    <input type="radio" id="card" name="payment"value="card"> Kapıda Kart<br>
+                </div>
+                </div>
+
+                <div id="receipt-info" >
+                    <div class="label-wrapper">
+                        <label>Fatura adresi</label><br>
+                    </div>
+                    <input type="text" name="name" placeholder="Ad" required value="{{invoice.name}}"><br>
+                    <input type="text" name="surname" placeholder="Soyadı" required value="{{invoice.surname}}"><br>
+                    <input type="text" name="company"placeholder="Şirket(isteğe bağlı)" value="{{invoice.company}}"><br>
+                    <input type="text" name="address1" placeholder="Adres" required value="{{invoice.address1}}"><br>
+                    <input type="text" name="address2" placeholder="Apartman, daire vb."><br>
+                    <input type="text" name="postcode" placeholder="Posta kodu" required value="{{invoice.postcode}}"><br>
+                    <input type="text" name="city" placeholder="Şehir" required value="{{invoice.city}}"><br>
+                    <input type="text" name="phone" placeholder="Telefon" required value="{{invoice.phone}}"><br>
+                </div>
+
+                <script type="text/javascript">
+                online_payment = document.getElementById("online_payment")
+                bank_transfer = document.getElementById("bank_transfer")
+                cash = document.getElementById("cash")
+                card = document.getElementById("card")
+                online_payment.addEventListener("click",function(){
+                document.getElementById("online_payment_explanation").classList.remove("hidden");
+                document.getElementById("bank_transfer_explanation").classList.add("hidden");
+                })
+                bank_transfer.addEventListener("click",function(){
+                document.getElementById("online_payment_explanation").classList.add("hidden");
+                document.getElementById("bank_transfer_explanation").classList.remove("hidden");
+                })
+                card.addEventListener("click",function(){
+                document.getElementById("online_payment_explanation").classList.add("hidden");
+                document.getElementById("bank_transfer_explanation").classList.add("hidden");
+                })
+                cash.addEventListener("click",function(){
+                document.getElementById("online_payment_explanation").classList.add("hidden");
+                document.getElementById("bank_transfer_explanation").classList.add("hidden");
+                })
+                </script>
+{% endblock content %}

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" type= "text/css" href="{% static '/css/checkout_main_design.css' %}">
+
+</head>
+<body>
+    <div class="bg">
+        <h2 class="header-1">West Cakery</h2>
+        <div class="bg-order-summary-small">
+
+            <div class="order-summary">
+                <button id = "order-summary-button">
+                    <div class ="order-summary-inside">
+                        <div class="os-svg">
+                            <svg width="20" height="19" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle__icon">
+                                <path d="M17.178 13.088H5.453c-.454 0-.91-.364-.91-.818L3.727 1.818H0V0h4.544c.455 0 .91.364.91.818l.09 1.272h13.45c.274 0 .547.09.73.364.18.182.27.454.18.727l-1.817 9.18c-.09.455-.455.728-.91.728zM6.27 11.27h10.09l1.454-7.362H5.634l.637 7.362zm.092 7.715c1.004 0 1.818-.813 1.818-1.817s-.814-1.818-1.818-1.818-1.818.814-1.818 1.818.814 1.817 1.818 1.817zm9.18 0c1.004 0 1.817-.813 1.817-1.817s-.814-1.818-1.818-1.818-1.818.814-1.818 1.818.814 1.817 1.818 1.817z"></path>
+                            </svg>
+                            <p>Sipariş özetini göster</p>
+                            <svg class="arrow"width="11" height="6" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle__dropdown" fill="#000"><path d="M.504 1.813l4.358 3.845.496.438.496-.438 4.642-4.096L9.504.438 4.862 4.534h.992L1.496.69.504 1.812z"></path></svg>
+
+                        </div>
+                        <div class="price">80.00 TL</div>
+                    </div>
+                </button>
+                <button id = "order-summary-button2" class="hidden">
+                    <div class ="order-summary-inside">
+                        <div class="os-svg">
+                            <svg width="20" height="19" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle__icon">
+                                <path d="M17.178 13.088H5.453c-.454 0-.91-.364-.91-.818L3.727 1.818H0V0h4.544c.455 0 .91.364.91.818l.09 1.272h13.45c.274 0 .547.09.73.364.18.182.27.454.18.727l-1.817 9.18c-.09.455-.455.728-.91.728zM6.27 11.27h10.09l1.454-7.362H5.634l.637 7.362zm.092 7.715c1.004 0 1.818-.813 1.818-1.817s-.814-1.818-1.818-1.818-1.818.814-1.818 1.818.814 1.817 1.818 1.817zm9.18 0c1.004 0 1.817-.813 1.817-1.817s-.814-1.818-1.818-1.818-1.818.814-1.818 1.818.814 1.817 1.818 1.817z"></path>
+                            </svg>
+                            <p>Sipariş özetini gizle</p>
+                            <svg class="arrow"width="11" height="7" xmlns="http://www.w3.org/2000/svg" class="order-summary-toggle__dropdown" fill="#000"><path d="M6.138.876L5.642.438l-.496.438L.504 4.972l.992 1.124L6.138 2l-.496.436 3.862 3.408.992-1.122L6.138.876z"></path></svg>
+                        </div>
+                        <div class="price">80.00 TL</div>
+                    </div>
+                </button>
+            </div>
+
+            <div class="order-summary-details hidden">
+                <div class="order-summary-details-wrapper">
+                    <div class="products">
+                        {% for item in items %}
+                        <div class="product">
+                            <div class="imgAndQuantity">
+                                <div class="img-wrapper"><img src="{{item.product.imageURL}}" alt=""></div>
+                                <div class="quantity"><p>{{item.quantity}}</p></div>
+                            </div>
+                            <div class="product-info">
+                                <p class="product-name">{{item.product.name}}</p>
+                                <p class="product-price">{{item.product.price}} TL</p>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="coupon">
+                        <form action="">
+                            <input type="text" placeholder="İndirim kodu" required>
+                            <input type="submit" value="&#x2192">
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="sum">
+                        <p class="sum-first">Alt Toplam</p>
+                        <p class="sum-second" >{{order.get_cart_total_no_shipping}} TL</p>
+                        <p class="sum-third">Kargo</p>
+                        <p class="sum-fourth" >{{shipping_text}}</p>
+                    </div>
+                    <hr>
+                    <div class="wholeSum">
+                        <div class="wholeSumTax">
+                            <p>Toplam</p>
+                            <p class="tax">{{order.get_tax}} vergi dahil</p>
+                        </div>
+                        <h4 class="biggest-amount">{{order.get_cart_total}} TL</h4>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="bg-shipping-info">
+          <div class="form-wrapper">
+
+            {% block content %}
+            {% endblock content %}
+
+            <div class="pay-wrapper hidden">
+                <a class="backToCart" href="/cart">
+                    <p><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg>
+                        Sepete geri dön</p>
+
+                </a>
+                <div></div>
+                <div class="pay">
+                    <input type="submit" value="Ödeme ile devam et">
+                </div>
+            </div>
+            <div class="pay-wrapper-first">
+                <div class="pay">
+                    <input type="submit" value="Ödeme ile devam et">
+                </div>
+
+                <a class="backToCart" href="/cart">
+                    <p><svg focusable="false" aria-hidden="true" class="icon-svg icon-svg--color-accent icon-svg--size-10 previous-link__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M8 1L7 0 3 4 2 5l1 1 4 4 1-1-4-4"></path></svg>
+                        Sepete geri dön</p>
+
+                </a>
+
+            </div>
+
+
+            </form>
+            </div>
+            <div class="policies-wrapper">
+                <hr>
+                <div class="policies">
+
+                    <a href="">Para iade politikası</a>
+                    <a href="">Kargo politikası</a>
+                    <a href="">Gizlilik politikası</a>
+                    <a href="">Yasal Bildirim</a>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="bg-order-summary hidden">
+            <div class="order-summary-details">
+                <div class="order-summary-details-wrapper">
+                    <div class="products">
+                        {% for item in items %}
+                        <div class="product">
+                            <div class="imgAndQuantity">
+                                <div class="img-wrapper"><img src="{{item.product.imageURL}}" alt=""></div>
+                                <div class="quantity"><p>{{item.quantity}}</p></div>
+                            </div>
+                            <div class="product-info">
+                                <p class="product-name">{{item.product.name}}</p>
+                                <p class="product-price">{{item.product.price}} TL</p>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="coupon">
+                        <form action="">
+                            <input type="text" placeholder="İndirim kodu" required>
+                            <input type="submit" value="&#x2192">
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="sum">
+                        <p class="sum-first">Alt Toplam</p>
+                        <p class="sum-second" > {{order.get_cart_total_no_shipping}} TL</p>
+                        <p class="sum-third">Kargo</p>
+                        <p class="sum-fourth" >{{shipping_text}}</p>
+                    </div>
+                    <hr>
+                    <div class="wholeSum">
+                        <div class="wholeSumTax">
+                            <p>Toplam</p>
+                            <p class="tax">{{order.get_tax}} vergi dahil</p>
+                        </div>
+                        <h4 class="biggest-amount">{{order.get_cart_total}} TL</h4>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    button = document.getElementById("order-summary-button")
+    button2 = document.getElementById("order-summary-button2")
+    order_summary = document.getElementsByClassName("order-summary-details")[0]
+
+    button.addEventListener("click", function(){
+        button.classList.add("hidden")
+        button2.classList.remove("hidden")
+        order_summary.classList.remove("hidden")
+    });
+    button2.addEventListener("click", function(){
+        button2.classList.add("hidden")
+        button.classList.remove("hidden")
+        order_summary.classList.add("hidden")
+    });
+
+
+
+    phone_number = document.getElementsByName("phone")[0]
+
+
+</script>
+</html>

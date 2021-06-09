@@ -1,0 +1,33 @@
+{% extends  'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md">
+  <div class="box-element">
+    <h3>Orders</h3>
+    <table class="table table-responsive-md table-responsive-lg ">
+      <thead class="thead-dark">
+        <tr>
+          <th >id</th>
+          <th>date_ordered</th>
+          <th>complete</th>
+          <th>transaction_id</th>
+          <th>status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for order in orders %}
+      <tr >
+        <th>{{order.id}}</th>
+        <th>{{order.date_ordered}}</th>
+        <th>{{order.complete}}</th>
+        <th>{{order.transaction_id}}</th>
+        <th>{{order.status}}</th>
+        <th><a class = "btn btn-outline-info" href="{% url 'orderPage' order.id %}">View</a></th>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %}

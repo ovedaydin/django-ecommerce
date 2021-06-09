@@ -1,0 +1,88 @@
+{% extends  'user/main.html' %}
+{% load static %}
+{% block content %}
+<style>
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  .user_card {
+    width: 350px;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+
+  }
+
+  .form_container {
+    margin-top: 20px;
+  }
+
+
+  #messages{
+    background-color: grey;
+    color: #fff;
+    padding: 10px;
+    margin-top: 10px;
+  }
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="user_card">
+      <div class="d-flex justify-content-center">
+        <h3>Register / Kayıt Ol</h3>
+
+      </div>
+      <br>
+      <div class="d-flex justify-content-center  form_container">
+
+        <form method="POST" action="">
+          {% csrf_token %}
+
+          <div class="input-group mb-3">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+              <input type="text" name="username" placeholder="Username..." class="form-control">
+          </div>
+          <div class="input-group mb-2">
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <input type="password" name="password" placeholder="Password..." class="form-control" >
+          </div>
+
+            <div class="d-flex justify-content-center mt-3 login_container">
+            <input class= "btn btn-success"type="submit" name="Create User"value="Giriş yap"  >
+            </div>
+        </form>
+      </div>
+      {% for message in messages %}
+        <p id = "messages">{{message}}</p>
+      {% endfor %}
+      <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+          Don't have an account? <a href="{% url 'register' %}"class="btn btn-outline-dark">Register</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+{% endblock content %}

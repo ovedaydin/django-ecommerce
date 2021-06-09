@@ -1,0 +1,425 @@
+$colors: (
+  primary: #005dff,
+  primary-light: lighten(#005dff, 40%),
+  primary-dark: darken(#005dff, 40%),
+  accent: darken(#787878, 30%),
+);
+
+$padding: 15px;
+$desktop: 1000px;
+$protablet: 750px;
+$tablet: 560px;
+
+@mixin desktop {
+  @media (min-width: #{$desktop}) {
+    @content;
+  }
+}
+@mixin protablet {
+  @media (min-width: #{$protablet}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet}) {
+    @content;
+  }
+}
+
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+body {
+  background-color: #ffffff;
+  margin: 0;
+  .bg {
+    height: 100vh;
+    @include desktop {
+      
+      margin-right: auto;
+      margin-left: auto;
+      display: grid;
+      grid-template-columns: 55% 45%;
+      .bg-shipping-info {
+        padding-top: 40px;
+        .header-2 {
+          display: block;
+          max-width: 572px;
+          text-align: left;
+          width: 100%;
+        }
+      }
+      .header-1 {
+        display: none;
+      }
+      .bg-order-summary-small {
+        display: none;
+      }
+      .bg-order-summary {
+        padding-bottom: auto;
+        display: flex;
+
+        width: 100%;
+
+        background-color: #fafafa;
+        
+        .order-summary-details {
+          width: 439px;
+          padding-left: 21px;
+          padding-top: 40px;
+          border-left: 1px solid #e6e6e6;
+          border-bottom: none;
+
+        }
+      }
+    }
+  }
+  h2 {
+    @include tablet {
+      max-width: 560px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    margin-left: 2.5%;
+    font-weight: 100;
+  }
+  .order-summary {
+    padding: 0;
+    margin: 0;
+    background-color: #fafafa;
+    width: 100%;
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+    @include tablet {
+      width: 100%;
+    }
+
+    button {
+      background-color: #fafafa;
+      border: none;
+      width: 100%;
+      .order-summary-inside {
+        @include tablet {
+          max-width: 560px;
+          margin: auto;
+        }
+        display: grid;
+        grid-template-columns: 50% 50%;
+        margin-left: 2.5%;
+        width: 95%;
+        .os-svg {
+          display: flex;
+          svg {
+            fill: #197bbd;
+            margin: auto;
+          }
+          p {
+            color: #197bbd;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            margin-left: 10px;
+            margin-top: 3px;
+          }
+          .arrow {
+            margin-top: 9px;
+          }
+        }
+        .price {
+          text-align: right;
+          font-size: 18px;
+          color: #3d3d3d;
+        }
+      }
+      padding: 18px 0 18px 0;
+    }
+  }
+  .order-summary-details {
+    padding: 0;
+    margin: 0;
+    background-color: #fafafa;
+
+    width: 100%;
+    border-bottom: 1px solid #e6e6e6;
+    .order-summary-details-wrapper {
+      @include tablet {
+        max-width: 560px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .products {
+        padding-top: 2%;
+        margin-left: 2.5%;
+        width: 95%;
+        .product {
+          display: block;
+          height: 100px;
+          display: grid;
+          grid-template-columns: 25% 75%;
+          .imgAndQuantity {
+            .img-wrapper {
+              position: absolute;
+              height: 100px;
+              width: 100px;
+              img {
+                height: 80px;
+                width: 80px;
+                padding: 5%;
+                border-radius: 20%;
+              }
+            }
+
+            .quantity {
+              width: 20px;
+              height: 20px;
+              background-color: gray;
+              position: absolute;
+              border-radius: 10px;
+              p {
+                padding: 0;
+                margin: 0;
+                margin-top: 1px;
+
+                color: white;
+
+                text-align: center;
+              }
+              left: 5em;
+              @include tablet {
+                left: calc(50vw - 190px);
+              }
+              @include desktop {
+                left: calc(55vw + 105px);
+              }
+            }
+          }
+          .product-info {
+            padding-top: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            .product-name {
+              text-align: left;
+            }
+            .product-price {
+              text-align: right;
+            }
+          }
+        }
+      }
+
+      .coupon {
+        form {
+          display: grid;
+          grid-template-columns: auto 20%;
+          input {
+            padding: 0;
+            margin: 0;
+            height: 3.5em;
+
+            margin-top: auto;
+            margin-bottom: auto;
+          }
+          input[type="submit"] {
+            background-color: #c8c8c8;
+            color: white;
+            margin-left: 5px;
+
+            border: none;
+            border-radius: 5px;
+          }
+          input[type="text"] {
+            padding-left: 5px;
+            color: C8C8C8;
+          }
+          @include desktop {
+            margin-right: 2.5%;
+          }
+        }
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      .sum {
+        margin-left: 2.5%;
+        width: 95%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .sum-first {
+          color: gray;
+        }
+        .sum-second {
+          text-align: right;
+        }
+        .sum-third {
+          color: gray;
+        }
+        .sum-fourth {
+          text-align: right;
+
+          font-size: 12px;
+          color: gray;
+          margin-top: 14px;
+        }
+      }
+      .wholeSum {
+        margin-left: 2.5%;
+        width: 95%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .wholeSumTax {
+          p {
+            padding: 0;
+            margin: 0;
+            font-size: 1em;
+          }
+          .tax {
+            padding-top: 2px;
+            color: gray;
+            font-size: 0.8em;
+          }
+        }
+
+        h4 {
+          padding: 0;
+          margin: 0;
+          text-align: right;
+          font-size: 1.5em;
+        }
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  form {
+    
+    width: 95%;
+    margin-left: 2.5%;
+    @include tablet {
+      max-width: 560px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    @include desktop {
+      max-width: 572px;
+
+      margin-right: 2.5%;
+    }
+
+    .label-wrapper {
+      padding: 10px;
+      padding-left: 5px;
+    }
+    
+    label {
+      font-size: 20px;
+    }
+
+    input[type="text"] {
+      border: 1px solid #d9d9d9;
+      border-radius: 4px;
+      width: 95%;
+      height: 1.7em;
+      margin-bottom: 10px;
+
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    .pay-wrapper {
+      @include protablet {
+        display: grid;
+        grid-template-columns: 30% auto 35%;
+      }
+    }
+    .pay-wrapper-first {
+      @include protablet {
+        display: none;
+      }
+    }
+    .pay {
+      padding-top: $padding;
+      input {
+        border: none;
+        background-color: #197bbd;
+        border-radius: 5px;
+        height: 68px;
+        font-size: 14px;
+        color: white;
+        width: 100%;
+        padding: $padding;
+        cursor: pointer;
+      }
+    }
+    .backToCart {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+
+      p {
+        svg {
+          height: 10px;
+          fill: #197bbd;
+        }
+        color: #197bbd;
+        text-align: center;
+        @include protablet {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  hr {
+    width: 95%;
+    opacity: 20%;
+    @include tablet {
+      max-width: 560px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    @include desktop {
+      max-width: 572px;
+
+      margin-right: 5%;
+    }
+  }
+  .policies-wrapper {
+    @include protablet{
+      margin-top: calc(100vh - 650px);
+    }
+    
+  }
+  .policies {
+    width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-left: 2.5%;
+    @include tablet {
+      max-width: 560px;
+      margin-right: auto;
+      margin-left: auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    @include desktop {
+      max-width: 572px;
+
+      margin-right: 5%;
+    }
+    a {
+      text-decoration: none;
+
+      width: 100%;
+      color: #197bbd;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+    
+  }
+}
+.hidden {
+  display: none;
+}

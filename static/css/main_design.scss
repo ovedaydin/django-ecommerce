@@ -1,0 +1,385 @@
+
+$colors: (
+    primary: #005DFF,
+    primary-light: lighten(#005DFF, 40%),
+    primary-dark: darken(#005DFF, 40%),
+    accent: darken(#787878, 30%)
+    );
+
+$padding: 15px;
+$borders: 15px;
+$desktop: 750px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}){
+        @content;
+    }
+}
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+}
+
+
+
+body {
+    font-weight: 200;
+    
+    margin: auto;
+    #info-primary{
+        font-family: "Helvetica Neue", Helvetica, Arial; 
+        font-weight: 400;
+        font-size: 15px;
+        max-width: 100%;
+            background-color: #333333;
+            font-size: 15px;
+            
+            a{
+                color: #fff;
+                text-decoration: none;
+                padding: $padding;
+                display: block;
+                text-align: center;
+            }
+            &:hover {
+                            
+                filter: brightness(200%);
+            }
+        
+        }
+    #info-primar:hover{
+        background-color: #3d3d3d;
+        
+    }
+    .bg{
+        max-width: 1300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        
+        
+        header{
+        
+        
+    
+            nav{
+                margin: auto;
+                margin-top: 0;
+                padding: $padding; 
+                margin-bottom: 0;
+                padding-bottom: 0;
+                
+                display: flex;
+                justify-content: space-between;
+                height: 5%;
+                a {
+                    svg{
+                        height: 30px; 
+                    }
+                }
+                #cart{
+                    display: grid;
+                    grid-template-columns: 2em 4em;
+                    text-decoration: none;
+                    color: #3d3d3d;
+                    svg{
+                        padding-right: 0;
+                        margin-right: 0;
+                    }
+                    p{  
+                        display: inline;
+                        margin-left: 0;
+                        height: 30px; 
+                        padding: auto;
+                        margin: auto;
+                    }
+                }
+                @include desktop{
+                    width: 95%;
+                }
+
+            }
+            hr{
+                display: none;
+                @include desktop{
+                    width: 95%;
+                    display: grid;
+                    margin-top: 0;
+                }
+            }
+        }
+        
+        #up-section{
+            
+            @include desktop{
+                padding-left: 2.5%;
+                padding-right: 2.5%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                height: 210px;
+        
+            }
+            
+            #logo {
+                margin: 0px;
+                
+                @include desktop{
+                    margin: auto;
+                    margin-left: 0;
+                    padding: 30px auto 30px 0px;
+                }
+                img{
+                    display: block;
+                    margin-left: auto;
+                    margin-right: auto;
+                    
+                    width: 150px;
+                    
+                } 
+            }
+            #infos{
+    
+                @include desktop{
+                    margin: auto;
+                    margin-right: 0;
+                    padding: 30px 0px 30px auto;
+                    text-align: right;
+                }
+                
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                a {
+                    color: color(accent);
+                    margin: 0 auto 0 auto;
+                    margin-bottom: 20px;
+                    text-decoration: none;
+                    display: block;
+                }
+                
+            }
+        }
+    
+        
+    
+        #ToggleMobileMenu{
+            
+    
+            display: flex;
+                svg{
+                    margin: 0 auto 0 auto;
+                }
+            
+        }
+        #ToggleMenuMain{
+            @include desktop{
+                display: none;
+            }
+        }
+        
+    
+       
+       #mobilemenu{
+        text-align: center;
+        font-family: Helvetica, Arial, sans-serif; 
+        a {
+            text-decoration: none;
+            color: color(accent);
+            svg{
+                height: 40px;   
+            }
+        }
+    
+        ul {
+            list-style: none;
+            padding: 0;
+            
+            margin: auto;
+            li {
+                padding: $padding;
+                svg {
+                    height: 23px; 
+                }
+            }
+    
+        }
+        
+    
+       }
+    }  
+    
+}
+
+#sideMenu{
+    @include desktop{
+        display: grid;
+        grid-template-columns: 20% auto;
+         
+    }
+    #sideNav{
+        font-family: Helvetica, Arial, sans-serif; 
+        font-weight: 400;
+        display: none;
+        text-decoration: none solid rgb(51, 51, 51);
+        color: #333333;
+        
+        font-size: 16px;
+        margin: 20px 0 0 20px;
+        
+        @include desktop{
+            display: block;
+        }
+
+        ul {
+            
+            list-style: none;
+            padding: 0;
+            
+            margin: 0;
+            hr { 
+                opacity: 30%;
+                width: 100%;
+                
+                margin-bottom: 5px;
+            }
+            
+            li {
+                &:hover {
+                            
+                    opacity: 50%;
+                }
+                padding: 12px 0 12px 0;
+                a{  
+                    
+                    text-decoration: none;
+                    color: color(accent);
+
+                    text-align: left;
+                    padding-top: 12px;
+                    
+                    
+                }
+                
+                svg {
+                    height: 40px;  
+                    padding: 12px 0 12px 0;
+                    height: 23px; 
+                    &:hover {
+                            
+                        opacity: 50%;
+                    }
+                }
+            }
+    
+        }
+        
+    }
+}
+
+
+
+
+
+hr{
+    width: 95%;
+    opacity: 20%;
+    max-width: 1300px;
+}
+
+
+footer{
+    
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    
+    display: grid;
+    padding: 5%;
+    
+    @include desktop{
+        
+        display: grid;
+        grid-template-columns: 15% 1fr 1fr 15%;
+        align-items: space-between;
+        padding: auto;
+        
+
+    }
+    padding-top:    1%;;
+    padding-bottom: 2%;
+    
+    
+    #company{
+        margin: auto;
+        h6{
+        
+            font-weight: 300;
+            font-size: 12px;
+            text-decoration: none solid;
+            margin: auto;
+            
+            a{
+                
+                text-decoration: none;
+                color: color(accent);
+                opacity: 10%;
+                &:hover {
+                            
+                    opacity: 100%;
+                }
+            }
+    
+        }
+        @include desktop{
+            margin-right: auto;
+            padding-left: 0;
+            margin-left: 0;
+    
+        }
+        
+    }
+    
+
+    #payment{
+        padding-top: 5%;
+        margin: auto;
+        
+        display: inline-block;
+        @include desktop{
+            margin-left: auto;
+            padding-top: 0;
+            padding-right: 0;
+            margin-right: 0;
+    
+        }
+        
+    }
+}
+
+
+.hidden{
+    display: none;
+}
+
+
+
+h3 { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 14px; 
+    font-style: normal; 
+    font-variant: normal; 
+    line-height: 15.4px; } 
+p { 
+        
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 14px; font-style: normal; 
+    font-variant: normal; font-weight: 400; 
+    line-height: 20px; } blockquote { 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 21px; font-style: normal; 
+    font-variant: normal; font-weight: 400; 
+    line-height: 30px; } pre { 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; 
+    font-size: 13px; font-style: normal; 
+    font-variant: normal; 
+    font-weight: 400; 
+    line-height: 18.5714px; 
+}

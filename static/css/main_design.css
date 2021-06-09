@@ -1,0 +1,372 @@
+body {
+  font-weight: 200;
+  margin: auto;
+}
+
+body #info-primary {
+  font-family: "Helvetica Neue", Helvetica, Arial;
+  font-weight: 400;
+  font-size: 15px;
+  max-width: 100%;
+  background-color: #333333;
+  font-size: 15px;
+}
+
+body #info-primary a {
+  color: #fff;
+  text-decoration: none;
+  padding: 15px;
+  display: block;
+  text-align: center;
+}
+
+body #info-primary:hover {
+  -webkit-filter: brightness(200%);
+          filter: brightness(200%);
+}
+
+body #info-primar:hover {
+  background-color: #3d3d3d;
+}
+
+body .bg {
+  max-width: 1300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body .bg header nav {
+  margin: auto;
+  margin-top: 0;
+  padding: 15px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 5%;
+}
+
+body .bg header nav a svg {
+  height: 30px;
+}
+
+body .bg header nav #cart {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2em 4em;
+      grid-template-columns: 2em 4em;
+  text-decoration: none;
+  color: #3d3d3d;
+}
+
+body .bg header nav #cart svg {
+  padding-right: 0;
+  margin-right: 0;
+}
+
+body .bg header nav #cart p {
+  display: inline;
+  margin-left: 0;
+  height: 30px;
+  padding: auto;
+  margin: auto;
+}
+
+@media (min-width: 750px) {
+  body .bg header nav {
+    width: 95%;
+  }
+}
+
+body .bg header hr {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  body .bg header hr {
+    width: 95%;
+    display: -ms-grid;
+    display: grid;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 750px) {
+  body .bg #up-section {
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    height: 210px;
+  }
+}
+
+body .bg #up-section #logo {
+  margin: 0px;
+}
+
+@media (min-width: 750px) {
+  body .bg #up-section #logo {
+    margin: auto;
+    margin-left: 0;
+    padding: 30px auto 30px 0px;
+  }
+}
+
+body .bg #up-section #logo img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 150px;
+}
+
+body .bg #up-section #infos {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+@media (min-width: 750px) {
+  body .bg #up-section #infos {
+    margin: auto;
+    margin-right: 0;
+    padding: 30px 0px 30px auto;
+    text-align: right;
+  }
+}
+
+body .bg #up-section #infos a {
+  color: #2c2c2c;
+  margin: 0 auto 0 auto;
+  margin-bottom: 20px;
+  text-decoration: none;
+  display: block;
+}
+
+body .bg #ToggleMobileMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .bg #ToggleMobileMenu svg {
+  margin: 0 auto 0 auto;
+}
+
+@media (min-width: 750px) {
+  body .bg #ToggleMenuMain {
+    display: none;
+  }
+}
+
+body .bg #mobilemenu {
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+body .bg #mobilemenu a {
+  text-decoration: none;
+  color: #2c2c2c;
+}
+
+body .bg #mobilemenu a svg {
+  height: 40px;
+}
+
+body .bg #mobilemenu ul {
+  list-style: none;
+  padding: 0;
+  margin: auto;
+}
+
+body .bg #mobilemenu ul li {
+  padding: 15px;
+}
+
+body .bg #mobilemenu ul li svg {
+  height: 23px;
+}
+
+@media (min-width: 750px) {
+  #sideMenu {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 20% auto;
+        grid-template-columns: 20% auto;
+  }
+}
+
+#sideMenu #sideNav {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  display: none;
+  -webkit-text-decoration: none solid #333333;
+          text-decoration: none solid #333333;
+  color: #333333;
+  font-size: 16px;
+  margin: 20px 0 0 20px;
+}
+
+@media (min-width: 750px) {
+  #sideMenu #sideNav {
+    display: block;
+  }
+}
+
+#sideMenu #sideNav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#sideMenu #sideNav ul hr {
+  opacity: 30%;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+#sideMenu #sideNav ul li {
+  padding: 12px 0 12px 0;
+}
+
+#sideMenu #sideNav ul li:hover {
+  opacity: 50%;
+}
+
+#sideMenu #sideNav ul li a {
+  text-decoration: none;
+  color: #2c2c2c;
+  text-align: left;
+  padding-top: 12px;
+}
+
+#sideMenu #sideNav ul li svg {
+  height: 40px;
+  padding: 12px 0 12px 0;
+  height: 23px;
+}
+
+#sideMenu #sideNav ul li svg:hover {
+  opacity: 50%;
+}
+
+hr {
+  width: 95%;
+  opacity: 20%;
+  max-width: 1300px;
+}
+
+footer {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: -ms-grid;
+  display: grid;
+  padding: 5%;
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+
+@media (min-width: 750px) {
+  footer {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 15% 1fr 1fr 15%;
+        grid-template-columns: 15% 1fr 1fr 15%;
+    -webkit-box-align: space-between;
+        -ms-flex-align: space-between;
+            align-items: space-between;
+    padding: auto;
+  }
+}
+
+footer #company {
+  margin: auto;
+}
+
+footer #company h6 {
+  font-weight: 300;
+  font-size: 12px;
+  -webkit-text-decoration: none solid;
+          text-decoration: none solid;
+  margin: auto;
+}
+
+footer #company h6 a {
+  text-decoration: none;
+  color: #2c2c2c;
+  opacity: 10%;
+}
+
+footer #company h6 a:hover {
+  opacity: 100%;
+}
+
+@media (min-width: 750px) {
+  footer #company {
+    margin-right: auto;
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+footer #payment {
+  padding-top: 5%;
+  margin: auto;
+  display: inline-block;
+}
+
+@media (min-width: 750px) {
+  footer #payment {
+    margin-left: auto;
+    padding-top: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+h3 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 15.4px;
+}
+
+p {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+blockquote {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 21px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+pre {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 18.5714px;
+}
+/*# sourceMappingURL=main_design.css.map */
